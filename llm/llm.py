@@ -66,9 +66,8 @@ llm_groq = ChatGroq(temperature=0,
 
 from langchain_cohere import CohereRerank
 from langchain.retrievers import ContextualCompressionRetriever
-
 def create_compression_retriever_CohereRerank(retriever=[]):
-    api_cohere = "eyBvB3B3dgoe6E9qlXNRSbTRaVzaXd0B1n3p2efw"
+    api_cohere = os.environ.get("COHERE_API_KEY")
     compressor = CohereRerank(cohere_api_key=api_cohere, model="rerank-english-v3.0")
     compression_retriever = ContextualCompressionRetriever(
         base_compressor=compressor, base_retriever=retriever
